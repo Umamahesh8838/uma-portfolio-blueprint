@@ -1,12 +1,71 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect } from 'react';
+import NavBar from '@/components/NavBar';
+import HeroSection from '@/components/HeroSection';
+import ExpertiseSection from '@/components/ExpertiseSection';
+import ProjectsSection from '@/components/ProjectsSection';
+import ResumeSection from '@/components/ResumeSection';
+import BlogSection from '@/components/BlogSection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const Index = () => {
+  useEffect(() => {
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    });
+
+    const fadeElements = document.querySelectorAll('.fade-in-section');
+    fadeElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    return () => {
+      fadeElements.forEach(element => {
+        observer.unobserve(element);
+      });
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-background text-foreground">
+      <NavBar />
+      
+      <HeroSection />
+      
+      <div className="fade-in-section">
+        <ExpertiseSection />
       </div>
+      
+      <div className="fade-in-section">
+        <ProjectsSection />
+      </div>
+      
+      <div className="fade-in-section">
+        <ResumeSection />
+      </div>
+      
+      <div className="fade-in-section">
+        <BlogSection />
+      </div>
+      
+      <div className="fade-in-section">
+        <ContactSection />
+      </div>
+      
+      <Footer />
+      <ScrollToTop />
     </div>
   );
 };
