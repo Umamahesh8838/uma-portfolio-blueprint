@@ -46,6 +46,18 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  /* Custom cursor styles */
+  a, button, [role="button"], input, select, textarea {
+    @apply transition-colors;
+  }
+
+  @media (pointer: fine) {
+    /* Only apply custom cursor on devices with fine pointer */
+    html, body {
+      @apply cursor-none;
+    }
+  }
 }
 
 .fade-in-section {
@@ -74,4 +86,26 @@
   margin: 2rem 0;
   border-radius: 2px;
   width: 100px;
+}
+
+/* Ripple text effect */
+.ripple-text {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 1s linear;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }

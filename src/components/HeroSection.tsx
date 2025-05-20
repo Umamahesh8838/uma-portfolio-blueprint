@@ -1,6 +1,7 @@
 
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import RippleText from '@/components/RippleText';
 
 const HeroSection = () => {
   return (
@@ -13,7 +14,7 @@ const HeroSection = () => {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-down">
-            UMA MAHESWAR REDDY
+            <RippleText text="UMA MAHESWAR REDDY" />
           </h1>
           
           <p className="mt-6 text-xl md:text-2xl text-gray-300 max-w-3xl animate-fade-up" style={{ animationDelay: "200ms" }}>

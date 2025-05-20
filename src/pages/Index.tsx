@@ -9,6 +9,7 @@ import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import RippleText from '@/components/RippleText';
 
 const Index = () => {
   useEffect(() => {
