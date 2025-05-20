@@ -25,7 +25,7 @@ const RippleText: React.FC<RippleTextProps> = ({ text, className }) => {
   return (
     <div 
       ref={textRef}
-      className={cn("relative overflow-hidden", className)}
+      className={cn("relative overflow-hidden clickable", className)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}

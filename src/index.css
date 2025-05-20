@@ -47,16 +47,9 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Custom cursor styles */
+  /* Transitions for interactive elements */
   a, button, [role="button"], input, select, textarea {
     @apply transition-colors;
-  }
-
-  @media (pointer: fine) {
-    /* Only apply custom cursor on devices with fine pointer */
-    html, body {
-      @apply cursor-none;
-    }
   }
 }
 
@@ -88,7 +81,7 @@
   width: 100px;
 }
 
-/* Ripple text effect */
+/* Enhanced Ripple text effect */
 .ripple-text {
   position: relative;
   overflow: hidden;
@@ -110,7 +103,7 @@
   }
 }
 
-/* Pulse animation for hover effects */
+/* Enhanced Pulse animation for hover effects */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -126,7 +119,7 @@
   }
 }
 
-/* Spotlight hover effect for cards and sections */
+/* Enhanced Spotlight hover effect for cards and sections */
 .spotlight-effect {
   position: relative;
   overflow: hidden;
@@ -139,9 +132,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
-              rgba(255, 255, 255, 0.1) 0%, 
-              rgba(255, 255, 255, 0) 60%);
+  background: radial-gradient(
+    800px circle at var(--x, 50%) var(--y, 50%), 
+    rgba(var(--primary-rgb, 59, 130, 246), 0.15) 0%, 
+    rgba(var(--primary-rgb, 59, 130, 246), 0.05) 25%, 
+    rgba(var(--primary-rgb, 59, 130, 246), 0) 50%
+  );
   opacity: 0;
   transition: opacity 0.3s;
   z-index: 1;
@@ -150,4 +146,29 @@
 
 .spotlight-effect:hover::before {
   opacity: 1;
+}
+
+/* Add RGB variables for use in radial gradients */
+:root {
+  --primary-rgb: 66, 99, 235;
+  --secondary-rgb: 162, 131, 254;
+}
+
+/* Cursor spotlight effect that follows the mouse */
+.cursor-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(
+    circle 600px at var(--x, 50%) var(--y, 50%),
+    rgba(var(--primary-rgb), 0.07) 0%,
+    rgba(var(--secondary-rgb), 0.03) 30%,
+    transparent 70%
+  );
+  opacity: 0.7;
+  mix-blend-mode: screen;
 }
