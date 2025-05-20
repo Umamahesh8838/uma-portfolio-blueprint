@@ -6,6 +6,7 @@ const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isPointing, setIsPointing] = useState(false);
 
   useEffect(() => {
     // Add global styles for cursor
@@ -41,7 +42,18 @@ const CustomCursor = () => {
       setIsHovering(false);
     };
 
+    const handlePointerDetection = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const isPointer = 
+        target.tagName === 'A' || 
+        target.tagName === 'BUTTON' || 
+        target.hasAttribute('role') && target.getAttribute('role') === 'button';
+      
+      setIsPointing(isPointer);
+    };
+
     window.addEventListener('mousemove', updatePosition);
+    window.addEventListener('mousemove', handlePointerDetection);
     window.addEventListener('mouseenter', handleMouseEnter);
     window.addEventListener('mouseleave', handleMouseLeave);
     
@@ -55,6 +67,7 @@ const CustomCursor = () => {
       // Clean up styles and event listeners on unmount
       document.head.removeChild(styleElement);
       window.removeEventListener('mousemove', updatePosition);
+      window.removeEventListener('mousemove', handlePointerDetection);
       window.removeEventListener('mouseenter', handleMouseEnter);
       window.removeEventListener('mouseleave', handleMouseLeave);
       
@@ -68,29 +81,45 @@ const CustomCursor = () => {
   if (typeof window === 'undefined') return null;
 
   return (
-    <div
-      className={cn(
-        "fixed pointer-events-none z-50 transition-opacity duration-300",
-        isVisible ? "opacity-100" : "opacity-0"
-      )}
-      style={{ left: 0, top: 0 }}
-    >
+    <>
+      {/* Spotlight effect */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-40 opacity-50"
+        style={{
+          background: `radial-gradient(600px at ${position.x}px ${position.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`
+        }}
+      />
+      
+      {/* Custom cursor */}
       <div
         className={cn(
-          "rounded-full border border-primary mix-blend-difference transition-all duration-100 ease-out",
-          isHovering ? "w-12 h-12" : "w-6 h-6"
+          "fixed pointer-events-none z-50 transition-opacity duration-300",
+          isVisible ? "opacity-100" : "opacity-0"
         )}
-        style={{
-          transform: `translate(${position.x - (isHovering ? 24 : 12)}px, ${position.y - (isHovering ? 24 : 12)}px)`,
-        }}
-      />
-      <div
-        className="bg-primary/80 rounded-full fixed w-2 h-2 mix-blend-difference transition-all duration-75 ease-out"
-        style={{
-          transform: `translate(${position.x - 4}px, ${position.y - 4}px)`,
-        }}
-      />
-    </div>
+        style={{ left: 0, top: 0 }}
+      >
+        <div
+          className={cn(
+            "rounded-full border border-primary mix-blend-difference transition-all duration-100 ease-out",
+            isHovering ? "w-12 h-12 bg-primary/10" : "w-6 h-6",
+            isPointing ? "bg-primary/30" : ""
+          )}
+          style={{
+            transform: `translate(${position.x - (isHovering ? 24 : 12)}px, ${position.y - (isHovering ? 24 : 12)}px)`,
+            backdropFilter: "blur(4px)"
+          }}
+        />
+        <div
+          className={cn(
+            "rounded-full fixed mix-blend-difference transition-all duration-75 ease-out",
+            isPointing ? "bg-primary w-3 h-3" : "bg-primary/80 w-2 h-2"
+          )}
+          style={{
+            transform: `translate(${position.x - (isPointing ? 6 : 4)}px, ${position.y - (isPointing ? 6 : 4)}px)`,
+          }}
+        />
+      </div>
+    </>
   );
 };
 
