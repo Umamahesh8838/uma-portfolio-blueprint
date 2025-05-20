@@ -15,7 +15,7 @@ const NavBar = () => {
       }
       
       // Determine which section is currently in view
-      const sections = ['home', 'expertise', 'projects', 'resume', 'blog', 'contact'];
+      const sections = ['home', 'projects', 'resume', 'blog', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -34,7 +34,6 @@ const NavBar = () => {
   
   const navLinks = [
     { name: 'Home', href: '#home', icon: Home },
-    { name: 'Expertise', href: '#expertise', icon: Code },
     { name: 'Projects', href: '#projects', icon: Code },
     { name: 'Resume', href: '#resume', icon: FileText },
     { name: 'Blog', href: '#blog', icon: BookOpen },

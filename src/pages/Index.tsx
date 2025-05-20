@@ -2,7 +2,6 @@
 import { useEffect } from 'react';
 import NavBar from '@/components/NavBar';
 import HeroSection from '@/components/HeroSection';
-import ExpertiseSection from '@/components/ExpertiseSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ResumeSection from '@/components/ResumeSection';
 import BlogSection from '@/components/BlogSection';
@@ -44,10 +43,6 @@ const Index = () => {
       <NavBar />
       
       <HeroSection />
-      
-      <div className="fade-in-section">
-        <ExpertiseSection />
-      </div>
       
       <div className="fade-in-section">
         <ProjectsSection />

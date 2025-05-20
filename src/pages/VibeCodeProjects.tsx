@@ -1,6 +1,6 @@
 
 import React from 'react';
-import NavBar from '@/components/NavBar';
+import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -46,9 +46,19 @@ const vibeProjects = [
 const VibeCodeProjects = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <NavBar />
+      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 md:px-6 py-3 bg-background/90 backdrop-blur-md shadow-md">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <Link to="/" className="font-bold text-xl text-white">UMR.</Link>
+          
+          <div className="hidden md:flex space-x-1">
+            <Link to="/" className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-300 hover:text-white hover:bg-gray-800">
+              Back to Home
+            </Link>
+          </div>
+        </div>
+      </nav>
       
-      <section className="py-20">
+      <section className="py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <RippleText text="Vibe Coding Projects" className="text-3xl md:text-4xl font-bold inline-block" />
