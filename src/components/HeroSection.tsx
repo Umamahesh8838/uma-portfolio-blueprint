@@ -6,9 +6,9 @@ import { BackgroundCells } from '@/components/ui/background-ripple-effect';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative">
-      <BackgroundCells className="bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pointer-events-auto">
+    <section id="home" className="relative min-h-screen">
+      <BackgroundCells className="bg-background min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pointer-events-auto min-h-screen flex items-center justify-center">
           <div className="flex flex-col items-center justify-center text-center">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-down">
               <RippleText text="UMA MAHESWAR REDDY" />

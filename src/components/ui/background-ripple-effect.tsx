@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -12,10 +11,10 @@ interface BackgroundCellsProps {
 
 export const BackgroundCells = ({ children, className }: BackgroundCellsProps) => {
   return (
-    <div className={cn("relative h-screen flex justify-center overflow-hidden", className)}>
+    <div className={cn("relative min-h-screen flex justify-center overflow-hidden", className)}>
       <BackgroundCellCore />
       {children && (
-        <div className="relative z-50 mt-40 pointer-events-none select-none">
+        <div className="relative z-50 pointer-events-none select-none w-full">
           {children}
         </div>
       )}
@@ -42,10 +41,10 @@ const BackgroundCellCore = () => {
     <div
       ref={ref}
       onMouseMove={handleMouseMove}
-      className="h-full absolute inset-0"
+      className="h-full w-full absolute inset-0"
     >
-      <div className="absolute h-[20rem] inset-y-0 overflow-hidden">
-        <div className="absolute h-full w-full pointer-events-none -bottom-2 z-40 bg-slate-950 [mask-image:linear-gradient(to_bottom,transparent,black)]" />
+      <div className="absolute h-full w-full inset-0 overflow-hidden">
+        <div className="absolute h-full w-full pointer-events-none z-40 bg-slate-950 [mask-image:linear-gradient(to_bottom,transparent,black)]" />
         <div
           className="absolute inset-0 z-20 bg-transparent"
           style={{
