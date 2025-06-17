@@ -1,7 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { FileText, Github, Linkedin, Home, Code, BookOpen, Mail } from 'lucide-react';
-import { MouseFollowingEyes } from '@/components/ui/mouse-following-eyes';
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -48,10 +48,7 @@ const NavBar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-3">
-          <a href="#home" className="font-bold text-xl text-white">UMR.</a>
-          <MouseFollowingEyes />
-        </div>
+        <a href="#home" className="font-bold text-xl text-white">UMR.</a>
         
         <div className="hidden md:flex space-x-1">
           {navLinks.map(link => (
