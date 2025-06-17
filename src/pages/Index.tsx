@@ -8,7 +8,7 @@ import BlogSection from '@/components/BlogSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
-import RippleText from '@/components/RippleText';
+import { BackgroundCells } from '@/components/ui/background-ripple-effect';
 
 const Index = () => {
   useEffect(() => {
@@ -39,29 +39,33 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <NavBar />
-      
-      <HeroSection />
-      
-      <div className="fade-in-section">
-        <ProjectsSection />
-      </div>
-      
-      <div className="fade-in-section">
-        <ResumeSection />
-      </div>
-      
-      <div className="fade-in-section">
-        <BlogSection />
-      </div>
-      
-      <div className="fade-in-section">
-        <ContactSection />
-      </div>
-      
-      <Footer />
-      <ScrollToTop />
+    <div className="min-h-screen bg-background text-foreground relative">
+      <BackgroundCells className="bg-background">
+        <div className="relative z-10 pointer-events-auto">
+          <NavBar />
+          
+          <HeroSection />
+          
+          <div className="fade-in-section">
+            <ProjectsSection />
+          </div>
+          
+          <div className="fade-in-section">
+            <ResumeSection />
+          </div>
+          
+          <div className="fade-in-section">
+            <BlogSection />
+          </div>
+          
+          <div className="fade-in-section">
+            <ContactSection />
+          </div>
+          
+          <Footer />
+          <ScrollToTop />
+        </div>
+      </BackgroundCells>
     </div>
   );
 };

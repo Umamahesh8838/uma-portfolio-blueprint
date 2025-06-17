@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -14,7 +15,7 @@ export const BackgroundCells = ({ children, className }: BackgroundCellsProps) =
     <div className={cn("relative min-h-screen flex justify-center overflow-hidden", className)}>
       <BackgroundCellCore />
       {children && (
-        <div className="relative z-50 pointer-events-none select-none w-full">
+        <div className="relative z-50 pointer-events-none select-none w-full min-h-screen">
           {children}
         </div>
       )}
@@ -41,12 +42,12 @@ const BackgroundCellCore = () => {
     <div
       ref={ref}
       onMouseMove={handleMouseMove}
-      className="h-full w-full absolute inset-0"
+      className="h-full w-full absolute inset-0 min-h-screen"
     >
-      <div className="absolute h-full w-full inset-0 overflow-hidden">
+      <div className="absolute h-full w-full inset-0 overflow-hidden min-h-screen">
         <div className="absolute h-full w-full pointer-events-none z-40 bg-slate-950 [mask-image:linear-gradient(to_bottom,transparent,black)]" />
         <div
-          className="absolute inset-0 z-20 bg-transparent"
+          className="absolute inset-0 z-20 bg-transparent min-h-screen"
           style={{
             maskImage: `radial-gradient(${size / 4}px circle at center, white, transparent)`,
             WebkitMaskImage: `radial-gradient(${size / 4}px circle at center, white, transparent)`,
