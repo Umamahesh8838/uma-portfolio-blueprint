@@ -2,14 +2,31 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import RippleText from '@/components/RippleText';
+import { TextScramble } from '@/components/ui/text-scramble';
+import { useState } from 'react';
 
 const HeroSection = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col items-center justify-center text-center">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-down">
-            <RippleText text="UMA MAHESWAR REDDY" />
+          <h1 
+            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-down cursor-pointer"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <TextScramble
+              as="span"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+              trigger={isHovered}
+              duration={1.2}
+              speed={0.02}
+              onScrambleComplete={() => setIsHovered(false)}
+            >
+              UMA MAHESWAR REDDY
+            </TextScramble>
           </h1>
           
           <p className="mt-6 text-xl md:text-2xl text-gray-300 max-w-3xl animate-fade-up" style={{ animationDelay: "200ms" }}>
